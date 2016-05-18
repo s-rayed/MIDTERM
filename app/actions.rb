@@ -1,4 +1,13 @@
+require 'pry'
 # Homepage (Root path)
+helpers do
+
+  def current_user
+    User.find(session[:id]) if session[:id]
+  end
+
+end
+
 get '/' do
   erb :index
 end
@@ -9,6 +18,16 @@ end
 
 get '/sign_up' do 
   erb :'/users/sign_up'
+end
+
+post '/login' do
+  if @user = User.find_by(email: params[:email], password: params[:password])
+    session[:id] = @user.id
+    erb :index
+  else
+    session[:error] = "session failure"
+    erb :index
+  end
 end
 
 post '/sign_up' do
