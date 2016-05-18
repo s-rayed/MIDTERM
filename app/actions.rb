@@ -30,6 +30,11 @@ post '/login' do
   end
 end
 
+get '/sign_up' do
+  @user = User.new
+  erb :'/users/sign_up'
+end
+
 post '/sign_up' do
   @user = User.new(
     first_name: params[:first_name],
@@ -51,4 +56,9 @@ end
 
 get '/products' do 
   erb :'products/products'
+end
+
+get '/logout' do
+  session.clear
+  redirect '/'
 end
