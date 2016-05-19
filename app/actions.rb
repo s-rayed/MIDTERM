@@ -76,6 +76,14 @@ post '/create_subscription' do
   end
 end
 
+post '/subscription/:id/delete' do
+  @subscription = Subscription.find(params[:id])
+  if @subscription.destroy
+    # confirmation message for destruction
+    redirect '/account_page'
+  end
+end
+
 get '/products' do 
   erb :'products/products'
 end
