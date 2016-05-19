@@ -6,6 +6,8 @@ helpers do
     User.find(session[:id]) if session[:id]
   end
 
+  
+
 end
 
 get '/' do

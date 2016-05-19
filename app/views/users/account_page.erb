@@ -29,20 +29,13 @@
       <ul class="nav nav-sidebar">
         <li class="active"><a href="#"> Account Info <span class="sr-only">(current)</span></a></li>
         <li><a href="/create_subscription">Create Subscription</a></li>
-        <li><a href="#">Analytics</a></li>
-        <li><a href="#">Export</a></li>
+
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="">Nav item</a></li>
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
-        <li><a href="">More navigation</a></li>
+
       </ul>
       <ul class="nav nav-sidebar">
-        <li><a href="">Nav item again</a></li>
-        <li><a href="">One more nav</a></li>
-        <li><a href="">Another nav item</a></li>
+       
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -60,11 +53,16 @@
           </thead>
           <tbody>
             <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-              <td><button type="button" class="btn btn-success">Unsubcribe</button></td>
+              <% current_user.products.each do |product|%>
+              <tr>
+                <td><%= product.name %></td>
+                <td><%= product.frequency %></td>
+                <td><%= product.content %></td>
+                <td><%= product.price %></td>
+                <td><button type="button" class="btn btn-success">Unsubcribe</button></td>
+                </tr>
+              <% end %>
+              
             </tr>
 
           </tbody>
@@ -75,7 +73,7 @@
 
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Sheena Kristin A.Eschor</h3>
+              <h3 class="panel-title"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h3>
             </div>
             <div class="panel-body">
               <div class="row">
@@ -98,39 +96,39 @@
                     <tbody>
                       <tr>
                         <td>First Name:</td>
-                        <td>Firstnameplacehold</td>
+                        <td><%= current_user.first_name.capitalize %></td>
                       </tr>
                       <tr>
                         <td>Last Name:</td>
-                        <td>Lastnameplacehold</td>
+                        <td><%= current_user.last_name.capitalize %></td>
                       </tr>
                       <tr>
                         <td>Email:</td>
-                        <td><a href="mailto:info@support.com">info@support.com</a></td>
+                        <td><%= current_user.email %></a></td>
                       </tr>
                       <tr>
                         <td>Address:</td>
-                        <td><%= current_user.address %></td>
+                        <td><%= current_user.address.capitalize %></td>
                       </tr>
                       <tr>
                         <td></td>
-                        <td>City</td>
+                        <td><%= current_user.city.capitalize %></td>
                       </tr>
                       <tr>
                         <td></td>
-                        <td>Postal Code</td>
+                        <td><%= current_user.postal_code %></td>
                       </tr>
                       <tr>
                         <td></td>
-                        <td>Province</td>
+                        <td><%= current_user.province.capitalize %></td>
                       </tr>
                       <tr>
                         <td>Paypal Email</td>
-                        <td>paypal</td>
+                        <td><%= current_user.paypal_email %></td>
                       </tr>
                       <tr>
                         <td>Member Since</td>
-                        <td>created_at</td>
+                        <td><%= current_user.created_at.to_s(:short) %></td>
                       </tr>
                       <tr>
                         <td>Password</td>
