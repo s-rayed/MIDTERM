@@ -1,5 +1,5 @@
 $(document).ready(function() {
- $(".animsition").animsition({
+  $(".animsition").animsition({
    inClass: 'zoom-in-sm',
    outClass: 'zoom-out-sm',
    inDuration: 1500,
@@ -20,5 +20,11 @@ $(document).ready(function() {
    overlayClass : 'animsition-overlay-slide',
    overlayParentElement : 'body',
    transition: function(url){ window.location.href = url; }
- });
+});
+
+  $("#user_info").click(function(){
+    $("#user_info").hide();
+    // $("create_subscription").show();
+ })
+
 });
