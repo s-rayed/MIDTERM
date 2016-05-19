@@ -54,6 +54,26 @@ post '/sign_up' do
   end
 end
 
+get '/create_subscription' do
+  erb :'/products/create_subscription'
+end
+
+post '/create_subscription' do
+  @product = Product.new(
+    name: params[:name],
+    price: params[:price],
+    frequency: params[:frequency],
+    description: params[:description],
+    url: params[:url]
+    )
+  if @product.save
+    puts "Subscription successfully created"
+    erb :'/products/subscription_confirmation'
+  else
+    erb :'/products/create_subscription'
+  end
+end
+
 get '/products' do 
   erb :'products/products'
 end
