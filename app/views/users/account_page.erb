@@ -35,7 +35,7 @@
 
       </ul>
       <ul class="nav nav-sidebar">
-       
+
       </ul>
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -52,19 +52,36 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <% current_user.subscriptions.each do |subscription|%>
-              <tr>
-                <td><%= subscription.product.name %></td>
-                <td><%= subscription.product.frequency %></td>
-                <td><%= subscription.product.content %></td>
-                <td><%= subscription.product.price %></td>
-                <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
-                </tr>
-              <% end %>
-              
-            </tr>
+            <% total = 0 %>
+            <% duration = 0 %>
+            <% remainder = 0 %>
+            <% next_purchase = 100 %>
+            <% current_user.subscriptions.each do |subscription|%>
 
+            <% duration = subscription.product.frequency %>
+            <% remainder = 30 % duration%>
+            <% duration = (30 / duration).to_i + remainder %> 
+            <% total += subscription.product.price * duration %>
+
+            <% if subscription.product.frequency < next_purchase
+             next_purchase = subscription.product.frequency %>
+             <% end %>
+
+
+             <tr>
+              <td><%= subscription.product.name %></td>
+              <td><%= subscription.product.frequency %></td>
+              <td><%= subscription.product.content %></td>
+              <td><%= subscription.product.price %></td>
+              <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
+            </tr>
+            <% end %>
+            <tr bgcolor="#ffff4c">
+              <td></td>
+              <td><strong>Next Arrival: <%= next_purchase %> Days</strong></td>
+              <td></td>
+              <td><strong>$<%= total %> Monthly</strong></td>
+            </tr>
           </tbody>
         </table>
 
@@ -134,24 +151,24 @@
                         <td>Password</td>
                         <td>*********</td>
                       </tr>
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
+            <div class="panel-footer">
+              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+              <span class="pull-right">
+                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+              </span>
+            </div>
+
           </div>
-          <div class="panel-footer">
-            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-            <span class="pull-right">
-              <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-            </span>
-          </div>
-          
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
 </div>
 </div>
 </div>
