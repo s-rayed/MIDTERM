@@ -382,3 +382,16 @@ h1 {
 .border_radius img {
   border-radius: 20px;
 }
+
+.subscription{
+  color:#D1D0CE;
+  font-size: 18px;
+  font-family: arial;
+  min-height: 100vh;
+
+  background: url("https://newevolutiondesigns.com/images/freebies/cool-wallpaper-1.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
