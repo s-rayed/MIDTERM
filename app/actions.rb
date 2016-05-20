@@ -84,6 +84,24 @@ get '/products' do
   erb :'products/products'
 end
 
+get '/products/:id' do
+  @product = Product.find(params[:id])
+  erb :'/products/product_details'
+end
+
+post '/products/:id/add' do
+  @create_subscription_association = Subscription.new(
+    user_id: current_user.id,
+    product_id: params[:id]
+    )
+  if @create_subscription_association.save
+    # confirmation message for subscription creation
+    redirect '/account_page'
+  else
+    redirect '/products/:id/add'
+  end
+end
+
 get '/logout' do
   session.clear
   redirect '/'
