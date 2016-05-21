@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160520234717) do
     t.string   "province"
     t.string   "paypal_email"
     t.string   "password"
+    t.integer  "subscription_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -330,15 +330,13 @@ h1 {
   background-size: cover;
 }
 #videosList {
-max-height: 400px; 
-max-width: 400px; 
  overflow: hidden;
 }
 .video {
  
- height: 325px;
- width: 400px;
- margin-bottom: 50px;
+ height: 200px;
+ width: 355px;
+
 }
 /* Hide Play button + controls on iOS */
 video::-webkit-media-controls {
