@@ -102,6 +102,25 @@ post '/products/:id/add' do
   end
 end
 
+post '/reviews' do
+  @review = Review.create(
+    user_id: current_user.id,
+    product_id: params[:id],
+    review: params[:review]
+    )
+  if @review.save
+    redirect '/products'
+  end
+end
+
+
+post '/review/:id/delete' do
+ @review = Review.find(params[:id]) 
+ if @review.destroy
+   redirect '/products'
+ end
+end
+
 get '/logout' do
   session.clear
   redirect '/'
