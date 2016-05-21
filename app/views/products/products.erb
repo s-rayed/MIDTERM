@@ -22,30 +22,32 @@
    </div>
   </div>
 </nav>!-- /.navbar -->
-<div class="container">
+<div class="products_background container">
   <div class="row row-offcanvas row-offcanvas-right">
     <div class="col-xs-12 col-sm-9">
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
 
-      <div class="jumbotron">
-        <p>SUBSCRIPTION LISTINGS</p>
+      <div style="background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRBlV62duPUxBJYnaE22_oS-dtLJI-auC0XCyjDapSWgUhaLflupQ)" class="jumbotron jumbotron-fluid">
+       <!--  <p>SUBSCRIPTION LISTINGS</p> -->
       </div>
+      <div class="row">
       <% all_products = Product.all %>
         <% all_products.each do |product| %>
-      <div class="row">
         <div id="videosList" class="col-xs-6 col-lg-6">
           <h2><a href="/products/<%= product.id %>" ><%= product.name %></a></h2>
           <p><%= product.description %> </p>   
           <div class="video">
-            <video style="background-image: url('<%= product.url %>')" height="200" width="355" class="thevideo" loop preload="none">
+            <video style="background-image: url('<%= product.url %>')" height="310" width="550" class="thevideo" loop preload="none">
               <source src="<%= product.video_url %>" type="video/mp4">
               <source src="http://giant.gfycat.com/VerifiableTerrificHind.webm" type="video/webm">
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
-        <% end %>
-
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div><!--/.container-->
