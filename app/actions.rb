@@ -104,8 +104,6 @@ post '/products/:id/add' do
   end
 end
 
-get '/testimonials' do
-  erb :'/users/testimonials'
 
 post '/reviews' do
   @review = Review.create(
@@ -114,7 +112,7 @@ post '/reviews' do
     review: params[:review]
     )
   if @review.save
-    redirect '/products'
+   redirect '/products'
   end
 end
 

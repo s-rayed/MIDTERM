@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20160520234717) do
-=======
 ActiveRecord::Schema.define(version: 20160521181610) do
->>>>>>> origin/stu
 
   create_table "products", force: :cascade do |t|
     t.string  "name"
