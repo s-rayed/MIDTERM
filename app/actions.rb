@@ -10,7 +10,8 @@ get '/' do
   erb :index
 end
 
-get '/account_page' do  
+get '/account_page' do
+
   erb :'users/account_page'
 end
 
@@ -62,6 +63,7 @@ post '/create_subscription' do
     price: params[:price],
     frequency: params[:frequency],
     description: params[:description],
+    user_id: session[:id],
     url: params[:url]
     )
   if @product.save
@@ -100,6 +102,10 @@ post '/products/:id/add' do
   else
     redirect '/products/:id/add'
   end
+end
+
+get '/testimonials' do
+  erb :'/users/testimonials'
 end
 
 get '/logout' do
