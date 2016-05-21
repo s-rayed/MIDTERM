@@ -57,12 +57,12 @@ sandy_product = Product.create(
   video_url: "/videos/fresh.mp4"
 )
 bb_product = Product.create(
-  name: "Weekly Bad B****es",
-  price: 100,
+  name: "Tommaco",
+  price: 1,
   frequency: 7,
-  description: "Hoes, Condoms, Hennesey",
-  user_id: 3,
-  url: "http://img.maniadb.com/images/album/116/116242_1_f.jpg",
+  description: "Tomato seeds cross bred with Tobacco seeds! Theyre REFRESHINGLY ADDICTIVE..."
+  user_id: 4,
+  url: "http://i.embed.ly/1/display/resize?key=1e6a1a1efdb011df84894040444cdc60&url=http%3A%2F%2Fscontent-a.cdninstagram.com%2Fhphotos-xap1%2Ft51.2885-15%2F10537950_260358724159076_548081493_n.jpg&width=810",
   video_url: "/videos/google.mp4"
 )
 subscription_jose1 = Subscription.create(
