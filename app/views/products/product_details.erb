@@ -23,7 +23,7 @@
      <% end %>
    </div>
  </div>
-</nav>!-- /.navbar -->
+</nav>
 
 <div class="row">
  <div class="col-sm-6 col-md-4">
@@ -50,7 +50,55 @@
        <p>Price per month: $<%= monthly_price %></p>
        <p>
          <form method="post" action="/products/<%= @product.id %>/add"><button type="submit" class="btn btn-success" value="add">Subscribe</button></form></p>
-       </div>
-     </div>
-   </div>
- </div>
+         <% if current_user %>
+         <h4>Leave a review of this product</h4>
+         <form method="post" action="/reviews">
+          <textarea class="form-control" rows="3" name="review" placeholder="Your review here"></textarea>
+          <div>
+            <input type="hidden" name="id" value="<%= @product.id%>">
+            <input type="submit" value="post review">
+          </div>
+        </form>
+        <% else %>
+        <h4>Please <a href="/">Log in</a> or <a href="/sign_up">Sign up</a> to leave a review</h4>
+        <% end %>
+        <% @reviews = Review.where(product_id: @product.id) %>
+        <% @reviews.each do |review| %>
+        <% if review.user_id == (current_user && current_user.id) %>
+
+          <div class="review-block">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="review-block-name"><a href="#">By: <%= current_user.first_name %></a></div>
+
+            <div class="review-block-date">Posted: <%= review.created_at.to_s(:long) %><br/></div>
+            </div>
+            <div class="col-sm-9">
+
+
+              <div class="review-block-description"><%= review.review %></div>
+            </div>
+          </div>
+      </div>
+        <form method="post" action="/review/<%= review.id %>/delete"><input type="submit" value="Delete"></form></p>
+        <% else %>
+        <div class="review-block">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="review-block-name"><a href="#">By: <%= review.user.first_name %></a></div>
+              <div class="review-block-date">Posted: <%= review.created_at.to_s(:long) %><br/></div>
+            </div>
+            <div class="col-sm-9">
+
+
+              <div class="review-block-description"><%= review.review %></div>
+            </div>
+          </div>
+      </div>
+  
+        <% end %>
+        <% end %>
+
+    </div>
+  </div>
+</div>
