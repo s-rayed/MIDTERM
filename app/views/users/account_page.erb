@@ -20,7 +20,7 @@
      </a> 
      <% end %>
    </div>
-  </div>
+ </div>
 </nav>
 
 <div class="container-fluid">
@@ -48,7 +48,7 @@
               <th>Subscription Name</th>
               <th>Frequency</th>
               <th>Content</th>
-              <th>Monthly Cost</th>
+              <th>Cost Per Delivery</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +58,7 @@
             <% next_purchase = 100 %>
             <% current_user.subscriptions.each do |subscription|%>
 
-            <% duration = subscription.product.frequency %>
+            <% duration = subscription.product.frequency%>
             <% remainder = 30 % duration%>
             <% duration = (30 / duration).to_i + remainder %> 
             <% total += subscription.product.price * duration %>
@@ -84,6 +84,53 @@
             </tr>
           </tbody>
         </table>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">My Subscriptions</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Subscription Name</th>
+                  <th>Frequency</th>
+                  <th>Monthly Revenue</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% total_revenue = 0 %>
+                
+                <% next_purchase = 100 %>
+                <% currentusers_products = Product.where(user_id: session[:id]) %>
+                <% total_subscribers = currentusers_products.count %>
+                <% currentusers_products.each do |product|%>
+
+                <% duration = product.frequency %>
+                
+                
+                <% total_revenue += product.price * total_subscribers %>
+
+                <% if product.frequency < next_purchase
+                 next_purchase = product.frequency %>
+                 <% end %>
+
+
+                 <tr>
+                  <td><%= product.name %></td>
+                  <td><%= product.frequency %></td>
+                  <td><%= product.price %></td>
+
+                </tr>
+                <% end %>
+                <tr bgcolor="#ffff4c">
+                  <td></td>
+                  <td><strong>Next Shipment: <%= next_purchase %> Days</strong></td>
+                  <td></td>
+                  <td><strong>$<%= total_revenue %> Monthly</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
 
