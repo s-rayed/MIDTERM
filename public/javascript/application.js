@@ -74,10 +74,44 @@ $(document).ready(function() {
     $("#user_subs").show();
       $("#create_subscription").hide();
   });
+    // $("#cr_sub_but").on('click', function(){
+    // $("#user_info_table").hide();
+    // $("#users_inventory").hide();
+    // $("#create_subscription").show();
+    //   $("#user_subs").hide();
+    // });
+  
+
 });
 
-// jQuery(function(){
-//    jQuery('#create_sub_button').click();
+// $(document).ready(function() {
+//   jQuery(function(){
+//     jQuery('#account_info').click();
+//   });
+  
 // });
+
+
+// $(document).ready(function() {
+//   jQuery(function(){
+//     jQuery('#create_sub_button').click();
+//   });
+  
+
+
+// jQuery(function(){
+//    $('#create_sub_button').on("click", function(){
+//     $('#cr_sub_but').click();
+//    });
+// });
+
+// $(document).ready(function() {
+//   $("#cr_sub_but").click(function(){
+//     $("#create_sub_button").click();
+//   });
+// });
+
+
+
 
 // AUTO CLICK FUNCTION FOR CREATE SUBSCRIPTION BUTTON ON HOMEPAGE

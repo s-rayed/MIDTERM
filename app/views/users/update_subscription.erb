@@ -1,0 +1,61 @@
+<form class="subscription form-horizontal" method="post" action="/create_subscription">
+   <fieldset>
+
+
+     <!-- Text input-->
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="fname">Name</label>  
+       <div class="col-md-5">
+         <input id="fname" name="name" type="text" placeholder="Product Name" class="form-control input-md" required="">
+       </div>
+     </div>
+
+     <!-- Text input-->
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="lname">Price</label>  
+       <div class="col-md-5">
+         <input id="lname" name="price" type="number" placeholder="Price" class="form-control input-md" required="">
+       </div>
+     </div>
+
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="state">Frquency</label>
+       <div class="col-md-4">
+         <select id="state" name="frequency" class="form-control">
+           <option value="90">Quarterly</option>
+           <option value="30">Monthly</option>
+           <option value="14">Bi-Monthly</option>
+           <option value="7">Weekly</option>
+         </select>
+       </div>
+     </div>
+
+ <!-- Text input-->
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="email">Descrption</label>  
+       <div class="col-md-5">
+         <textarea id="email" name="description" type="text" placeholder="Description" class="form-control input-md" required="" class="form-control" rows="6"></textarea>
+       </div>
+     </div>
+
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="lname">Image URL</label>  
+       <div class="col-md-5">
+         <input id="lname" name="url" type="text" placeholder="Image url" class="form-control input-md" required="">
+       </div>
+     </div>
+
+     <div class="form-group">
+       <label class="col-md-4 control-label" for="submit"></label>
+       <div class="col-md-4">
+
+         <label class="checkbox-inline" for="submit">
+           <form method="post" action="/users/update_subscription/<%= params[:id] %>/update"><input class="btn btn-success" type="submit" name="submit" id="submit" value="Update Subscription"></form>
+           
+
+           <form method="post" action="/users/update_subscription/<%= params[:id] %>/delete"><input  class="btn btn-success" type="submit" name="delete" id="submit" value="Delete Subscription"></form>
+         </label>
+       </div>
+     </div>
+   </fieldset>
+ </form>

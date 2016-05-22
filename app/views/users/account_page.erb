@@ -58,15 +58,19 @@
           <% total_revenue = 0 %>
           <% duration = 0 %>
           <% next_purchase1 = 100 %>
+          <% @num_subs = 0 %>
         
-          <% currentusers_products = Product.where(user_id: session[:id]) %>
-          <% total_subscribers = currentusers_products.count %>
-          <% currentusers_products.each do |product|%>
+          <% seller_products = Product.where(user_id: session[:id]) %>
+          <% seller_products.each do |product| %>
+          <% @num_subs = Subscription.where(product_id: product.id).count %>
+          
+          
+          
 ​
           <% duration = product.frequency %>
           <% duration = (30/duration).to_i %>
 ​
-          <% total_revenue += product.price * duration * total_subscribers %>
+          <% total_revenue += product.price * duration * @num_subs %>
 ​
           <% if product.frequency < next_purchase1
            next_purchase1 = product.frequency %>
@@ -74,22 +78,23 @@
 ​
 ​
            <tr>
-            <td><%= product.name %></td>
+            <td><a href="/users/update_subscription/<%= product.id %>"><%= product.name %></a></td>
             <td><%= product.price %></td>
             <td><%= product.frequency %></td>
             
-            <td><%= total_subscribers %></td>
+            <td><%= @num_subs %></td>
             <td></td>
             <td><form method="post" action="/products/<%= product.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Delete</button></form></td>
           </tr>
 ​
           <% end %>
+          
           <tr bgcolor="#ffff4c">
             <td></td>
             <!-- <td><strong>Next Shipment: <%= next_purchase1 %> Days</strong></td> -->
             <td></td>
             <td></td>
-            <td><strong>Total Subscribers: <%= total_subscribers %></strong></td>
+            <td><strong>Total Subscribers: <%= @num_subs %></strong></td>
             <td><strong>$<%= total_revenue %> Monthly</strong></td>
             <td>Baby dont go!</td>
           </tr>
@@ -124,22 +129,24 @@
           <% current_user.subscriptions.each do |subscription|%>
           
           <% num_subs += 1%>
-          <% duration = subscription.product.frequency %>
-​
-          <% duration = (30 / duration).to_i  %> 
-          <% total += subscription.product.price * duration %>
-          
-          <% if subscription.product.frequency < next_purchase
-           next_purchase = subscription.product.frequency %>
-           <% end %>
-​
-​
-           <tr>
-            <td><%= subscription.product.name %></td>
-            <td><%= subscription.product.frequency %></td>
-            <td><%= subscription.product.content %></td>
-            <td><%= subscription.product.price %></td>
-​
+          <% if !subscription.product.nil? %>
+            <% duration = subscription.product.frequency %>
+
+  ​
+            <% duration = (30 / duration).to_i  %> 
+            <% total += subscription.product.price * duration %>
+            
+            <% if subscription.product.frequency < next_purchase
+             next_purchase = subscription.product.frequency %>
+             <% end %>
+  ​
+  ​
+             <tr>
+              <td><%= subscription.product.name %></td>
+              <td><%= subscription.product.frequency %></td>
+              <td><%= subscription.product.content %></td>
+              <td><%= subscription.product.price %></td>
+​         <% end %>
             <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
           </tr>
           <% end %>
