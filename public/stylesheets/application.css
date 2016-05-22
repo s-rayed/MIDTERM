@@ -446,9 +446,12 @@ body {
 }
 
 #detail_background {
-  background: url("http://orig06.deviantart.net/9190/f/2012/087/b/e/dark_gray_background_by_wiedzmawiedzma-d4u8sdx.jpg") no-repeat center center; 
+  background: url("http://orig06.deviantart.net/9190/f/2012/087/b/e/dark_gray_background_by_wiedzmawiedzma-d4u8sdx.jpg") no-repeat center center fixed; 
   color:#DCDCDC;
-  overflow: hidden;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 #margin_detail{
   margin-left: 500px

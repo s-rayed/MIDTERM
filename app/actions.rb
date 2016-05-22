@@ -64,7 +64,8 @@ post '/create_subscription' do
     frequency: params[:frequency],
     description: params[:description],
     user_id: session[:id],
-    url: params[:url]
+    url: params[:url],
+    video_url: params[:video_url]
     )
   if @product.save
     puts "Subscription successfully created"
@@ -144,7 +145,6 @@ post '/users/update_subscription/:id/update' do
    url: params[:url]
    )
  if @update_prod.save
-
    erb :'/account_page'
  else
    erb :'/account_page'
@@ -154,7 +154,7 @@ end
 post '/users/update_subscription/:id/delete' do
 @delete_prod = Product.find(params[:id]) 
 if @delete_prod.destroy
-  redirect '/products'
+  redirect '/account_page'
 end
 end
 

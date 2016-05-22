@@ -90,10 +90,10 @@ sandy_product = Product.create(
   name: "Awkward Box",
   price: 10,
   frequency: 30,
-  description: "Tampons and alot of awkward shit",
+  description: "Tampons and awkward stuff",
   user_id: 2,
   url: "http://mamamia-cdn.s3.amazonaws.com/wp-content/uploads/2013/01/tampons-pads-380x285.jpg",
-  video_url: "/videos/fresh.mp4"
+  video_url: "/videos/awkward_box.mp4"
 )
 
 michelle_product = Product.create(
@@ -133,12 +133,17 @@ marc_product = Product.create(
   description: "(√-1) (2^3) Σ (inverse cos(-1)) and it scratched me!",
   user_id: 6,
   url: "https://www.adafruit.com/includes/templates/adafruit2013/images/raspberrypi.png",
-  video_url: "/videos/goku.mp4"
+  video_url: "/videos/pi.mp4"
 )
 
 jose_tomacco_subscribed = Subscription.create(
   user_id: 1,
-  product_id: 3
+  product_id: 4
+)
+
+jose_pi_subscribed = Subscription.create(
+  user_id: 1,
+  product_id: 6
 )
 
 sandy_gardenpack_subscribed = Subscription.create(
@@ -146,12 +151,27 @@ sandy_gardenpack_subscribed = Subscription.create(
   product_id: 1
 )
 
+sandy_catglasses_subscribed = Subscription.create(
+  user_id: 2,
+  product_id: 3 
+)
+
 ​michelle_awkward_subscribed = Subscription.create(
   user_id: 3,
   product_id: 2
 )
 
+michelle_glossy_subscribed = Subscription.create(
+  user_id: 3,
+  product_id: 5
+)
+
 homer_catglasses_subscribed = Subscription.create(
+  user_id: 4,
+  product_id: 3
+)
+
+homer_gardenpack_subscribed = Subscription.create(
   user_id: 4,
   product_id: 1
 )
@@ -161,7 +181,17 @@ sara_tomacco_subscribed = Subscription.create(
   product_id: 4
 )
 
+sara_awkward_subscribed = Subscription.create(
+  user_id: 5,
+  product_id: 2
+)
+
 michelle_glossy_subscribed = Subscription.create(
   user_id: 3,
   product_id: 5
+)
+
+michelle_pi_subscribed = Subscription.create(
+  user_id: 3,
+  product_id: 6
 )

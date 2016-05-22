@@ -46,12 +46,11 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Subscription Name</th>
-            <th>Price</th>
-            <th>Frequency</th>
-            <th>Subscribers</th>
-            <th>Monthly Revenue</th>
-            <th>Delete Product?</th>
+            <th><center>Subscription Name</center></th>
+            <th><center>Price</center></th>
+            <th><center>Frequency</center></th>
+            <th><center>Subscribers</center></th>
+            <th><center>Monthly Revenue</center></th>
           </tr>
         </thead>
         <tbody>
@@ -78,25 +77,25 @@
 ​
 ​
            <tr>
-            <td><a href="/users/update_subscription/<%= product.id %>"><%= product.name %></a></td>
-            <td><%= product.price %></td>
-            <td><%= product.frequency %></td>
+            <td><strong><center><a href="/users/update_subscription/<%= product.id %>"><%= product.name %></a></center></strong></td>
+            <td><center><%= product.price %></center></td>
+            <td><center><%= product.frequency %></center></td>
             
-            <td><%= @num_subs %></td>
+            <td><center><%= @num_subs %></center></td>
             <td></td>
-            <td><form method="post" action="/products/<%= product.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Delete</button></form></td>
+            <td></td>
           </tr>
 ​
           <% end %>
-          
+
           <tr bgcolor="#ffff4c">
             <td></td>
             <!-- <td><strong>Next Shipment: <%= next_purchase1 %> Days</strong></td> -->
             <td></td>
             <td></td>
-            <td><strong>Total Subscribers: <%= @num_subs %></strong></td>
-            <td><strong>$<%= total_revenue %> Monthly</strong></td>
-            <td>Baby dont go!</td>
+            <td><strong><center>Total Subscribers: <%= @num_subs %></center></strong></td>
+            <td><center><strong>$<%= total_revenue %> Monthly</strong></center></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -112,11 +111,10 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>Subscription Name</th>
-            <th>Frequency</th>
-            <th>Content</th>
-            <th>Monthly Cost</th>
-            <th>Unsubscribe?</th>
+            <th><center>Subscription Name</center></th>
+            <th><center>Frequency</center></th>
+            <th><center>Monthly Cost</center></th>
+            <th><center>Unsubscribe?</center></th>
           </tr>
         </thead>
         <tbody>
@@ -139,22 +137,24 @@
             <% if subscription.product.frequency < next_purchase
              next_purchase = subscription.product.frequency %>
              <% end %>
-  ​
+  ​           
   ​
              <tr>
-              <td><%= subscription.product.name %></td>
-              <td><%= subscription.product.frequency %></td>
-              <td><%= subscription.product.content %></td>
-              <td><%= subscription.product.price %></td>
+              <td><center><%= subscription.product.name %></center></td>
+              <td><center><%= subscription.product.frequency %></center></td>
+              <td><center><%= subscription.product.price %></center></td>
 ​         <% end %>
-            <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
+            <td><center><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></center></td>
           </tr>
           <% end %>
+           <% if next_purchase == 100 
+          next_purchase = 0 %>
+          <% end %>
           <tr bgcolor="#ffff4c">
-            <td><strong>Total Subscriptions: <%= num_subs %> </strong></td>
-            <td><strong>Next Arrival: <%= next_purchase %> Days</strong></td>
+            <td><center><strong>Total Subscriptions: <%= num_subs %> </strong></center></td>
+            <td><center><strong>Next Arrival: <%= next_purchase %> Days</strong></center></td>
+            <td><center><strong>$<%= total %> Monthly</strong></center></td>
             <td></td>
-            <td><strong>$<%= total %> Monthly</strong></td>
             <td></td>
           </tr>
         </tbody>
