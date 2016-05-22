@@ -38,6 +38,19 @@ user3 = User.create!(
   subscription_id: 1
 )
 
+user3 = User.create!(
+  first_name: 'homer',
+  last_name: 'simpson',
+  email: 'homersimpson@gmail.com',
+  address: '723 evergreen terrace',
+  city: 'springfield',
+  postal_code: 'M3N1A6',
+  province: 'ON',
+  paypal_email: 'homersimpson@gmail.com',
+  password: 'test',
+  subscription_id: 1
+)
+
 jose_product = Product.create(
   name: "Jose's Garden Pack",
   price: 8,
@@ -57,7 +70,7 @@ sandy_product = Product.create(
   video_url: "/videos/fresh.mp4"
 )
 bb_product = Product.create(
-  name: "Tommaco",
+  name: "ToMmaco",
   price: 1,
   frequency: 7,
   description: "Tomato seeds cross bred with Tobacco seeds! Theyre REFRESHINGLY ADDICTIVE..."

@@ -22,201 +22,263 @@
    </div>
  </div>
 </nav>
-
+​
+<h1 class="page-header">Hello "PLACEHOLDER FOR USER.name"</h1>
+​
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-3 col-md-2 sidebar">
       <ul class="nav nav-sidebar">
-        <li class="active"><a href="#"> Account Info <span class="sr-only">(current)</span></a></li>
-        <li><a href="/create_subscription">Create Subscription</a></li>
-
-      </ul>
-      <ul class="nav nav-sidebar">
-
-      </ul>
-      <ul class="nav nav-sidebar">
-
+        <li id="account_info" class="active"><a href="#"> Account Info <span class="sr-only">(current)</span></a></li>
+        <li id="create_sub_button"><a href="#">Create Subscription</a></li>
       </ul>
     </div>
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-      <h1 class="page-header">Hello "PLACEHOLDER FOR USER.name"</h1>
-      <h2 class="sub-header">Active Subscriptions</h2>
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Subscription Name</th>
-              <th>Frequency</th>
-              <th>Content</th>
-              <th>Cost Per Delivery</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% total = 0 %>
-            <% duration = 0 %>
-            <% remainder = 0 %>
-            <% next_purchase = 100 %>
-            <% current_user.subscriptions.each do |subscription|%>
-
-            <% duration = subscription.product.frequency%>
-            <% remainder = 30 % duration%>
-            <% duration = (30 / duration).to_i + remainder %> 
-            <% total += subscription.product.price * duration %>
-
-            <% if subscription.product.frequency < next_purchase
-             next_purchase = subscription.product.frequency %>
-             <% end %>
-
-
-             <tr>
-              <td><%= subscription.product.name %></td>
-              <td><%= subscription.product.frequency %></td>
-              <td><%= subscription.product.content %></td>
-              <td><%= subscription.product.price %></td>
-              <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
-            </tr>
-            <% end %>
-            <tr bgcolor="#ffff4c">
-              <td></td>
-              <td><strong>Next Arrival: <%= next_purchase %> Days</strong></td>
-              <td></td>
-              <td><strong>$<%= total %> Monthly</strong></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h2 class="sub-header">My Subscriptions</h2>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Subscription Name</th>
-                  <th>Frequency</th>
-                  <th>Monthly Revenue</th>
-                </tr>
-              </thead>
+  </div>
+</div>
+​
+<section id="user_subs">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2 class="sub-header">Active Subscriptions</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subscription Name</th>
+            <th>Frequency</th>
+            <th>Content</th>
+            <th>Monthly Cost</th>
+            <th>Unsubscribe?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% total = 0 %>
+          <% duration = 0 %>
+          <% remainder = 0 %>
+          <% next_purchase = 100 %>
+          <% num_subs = 0%>
+          
+          <% current_user.subscriptions.each do |subscription|%>
+          
+          <% num_subs += 1%>
+          <% duration = subscription.product.frequency %>
+​
+          <% duration = (30 / duration).to_i  %> 
+          <% total += subscription.product.price * duration %>
+          
+          <% if subscription.product.frequency < next_purchase
+           next_purchase = subscription.product.frequency %>
+           <% end %>
+​
+​
+           <tr>
+            <td><%= subscription.product.name %></td>
+            <td><%= subscription.product.frequency %></td>
+            <td><%= subscription.product.content %></td>
+            <td><%= subscription.product.price %></td>
+​
+            <td><form method="post" action="/subscription/<%= subscription.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Unsubcribe</button></form></td>
+          </tr>
+          <% end %>
+          <tr bgcolor="#ffff4c">
+            <td><strong>Total Subscriptions: <%= num_subs %> </strong></td>
+            <td><strong>Next Arrival: <%= next_purchase %> Days</strong></td>
+            <td</td>
+            <td><strong>$<%= total %> Monthly</strong></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+​
+<section id="users_inventory">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2 class="sub-header">My Subsciption Products</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subscription Name</th>
+            <th>Frequency</th>
+            <th>Price</th>
+            <th>Subscribers</th>
+            <th>Monthly Revenue</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% total_revenue = 0 %>
+          <% duration = 0 %>
+        
+          <% currentusers_products = Product.where(user_id: session[:id]) %>
+          <% total_subscribers = currentusers_products.count %>
+          <% currentusers_products.each do |product|%>
+​
+          <% duration = product.frequency %>
+          <% duration = (30/duration).to_i %>
+​
+          <% total_revenue += product.price * duration * total_subscribers %>
+​
+          <% if product.frequency < next_purchase
+           next_purchase = product.frequency %>
+           <% end %>
+​
+​
+           <tr>
+            <td><%= product.name %></td>
+            <td><%= product.frequency %></td>
+            <td><%= product.price %></td>
+            <td><%= total_subscribers %></td>
+          </tr>
+​
+          <% end %>
+          <tr bgcolor="#ffff4c">
+            <td></td>
+            <!-- <td><strong>Next Shipment: <%= next_purchase %> Days</strong></td> -->
+            <td></td>
+            <td></td>
+            <td><strong>Total Subscribers: <%= total_subscribers %></strong></td>
+            <td><strong>$<%= total_revenue %> Monthly</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+​
+<section id="user_info_table" class="table">
+​
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+​
+    <div class="panel panel-info">
+​
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %>
+        </h3>
+      </div>
+      
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3 col-lg-3 " align="center"> 
+            <img alt="User Pic" src="http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg" class="img-circle img-responsive"> 
+          </div>
+          <div class=" col-md-9 col-lg-9 "> 
+            <table class="table table-user-information">
               <tbody>
-                <% total_revenue = 0 %>
-                
-                <% next_purchase = 100 %>
-                <% currentusers_products = Product.where(user_id: session[:id]) %>
-                <% total_subscribers = currentusers_products.count %>
-                <% currentusers_products.each do |product|%>
-
-                <% duration = product.frequency %>
-                
-                
-                <% total_revenue += product.price * total_subscribers %>
-
-                <% if product.frequency < next_purchase
-                 next_purchase = product.frequency %>
-                 <% end %>
-
-
-                 <tr>
-                  <td><%= product.name %></td>
-                  <td><%= product.frequency %></td>
-                  <td><%= product.price %></td>
-
+                <tr>
+                  <td>First Name:</td>
+                  <td><%= current_user.first_name.capitalize %></td>
                 </tr>
-                <% end %>
-                <tr bgcolor="#ffff4c">
+                <tr>
+                  <td>Last Name:</td>
+                  <td><%= current_user.last_name.capitalize %></td>
+                </tr>
+                <tr>
+                  <td>Email:</td>
+                  <td><%= current_user.email %></a></td>
+                </tr>
+                <tr>
+                  <td>Address:</td>
+                  <td><%= current_user.address.capitalize %></td>
+                </tr>
+                <tr>
                   <td></td>
-                  <td><strong>Next Shipment: <%= next_purchase %> Days</strong></td>
+                  <td><%= current_user.city.capitalize %></td>
+                </tr>
+                <tr>
                   <td></td>
-                  <td><strong>$<%= total_revenue %> Monthly</strong></td>
+                  <td><%= current_user.postal_code %></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><%= current_user.province.capitalize %></td>
+                </tr>
+                <tr>
+                  <td>Paypal Email</td>
+                  <td><%= current_user.paypal_email %></td>
+                </tr>
+                <tr>
+                  <td>Member Since</td>
+                  <td><%= current_user.created_at.to_s(:short) %></td>
+                </tr>
+                <tr>
+                  <td>Password</td>
+                  <td>*********</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-
-
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
-
-
-          <div class="panel panel-info">
-            <div class="panel-heading">
-              <h3 class="panel-title"><%= current_user.first_name.capitalize %> <%= current_user.last_name.capitalize %></h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg" class="img-circle img-responsive"> </div>
-                
-                <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                  <dl>
-                    <dt>DEPARTMENT:</dt>
-                    <dd>Administrator</dd>
-                    <dt>HIRE DATE</dt>
-                    <dd>11/12/2013</dd>
-                    <dt>DATE OF BIRTH</dt>
-                       <dd>11/12/2013</dd>
-                    <dt>GENDER</dt>
-                    <dd>Male</dd>
-                  </dl>
-                </div>-->
-                <div class=" col-md-9 col-lg-9 "> 
-                  <table class="table table-user-information">
-                    <tbody>
-                      <tr>
-                        <td>First Name:</td>
-                        <td><%= current_user.first_name.capitalize %></td>
-                      </tr>
-                      <tr>
-                        <td>Last Name:</td>
-                        <td><%= current_user.last_name.capitalize %></td>
-                      </tr>
-                      <tr>
-                        <td>Email:</td>
-                        <td><%= current_user.email %></a></td>
-                      </tr>
-                      <tr>
-                        <td>Address:</td>
-                        <td><%= current_user.address.capitalize %></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td><%= current_user.city.capitalize %></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td><%= current_user.postal_code %></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td><%= current_user.province.capitalize %></td>
-                      </tr>
-                      <tr>
-                        <td>Paypal Email</td>
-                        <td><%= current_user.paypal_email %></td>
-                      </tr>
-                      <tr>
-                        <td>Member Since</td>
-                        <td><%= current_user.created_at.to_s(:short) %></td>
-                      </tr>
-                      <tr>
-                        <td>Password</td>
-                        <td>*********</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div class="panel-footer">
-              <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-              <span class="pull-right">
-                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-              </span>
-            </div>
-
-          </div>
-        </div>
+      </div>
+​
+      <div class="panel-footer">
+        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+        <span class="pull-right">
+          <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+        </span>
       </div>
     </div>
-
   </div>
-</div>
-</div>
-</div>
-
+</section>
+​
+<section id="create_subscription">
+  <form class="subscription form-horizontal" method="post" action="/create_subscription">
+    <fieldset>
+      <!-- Form Name -->
+      <button type="button" class="btn btn-primary">Please fill out this form!</button>
+​
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="fname">Name</label>  
+        <div class="col-md-5">
+          <input id="fname" name="name" type="text" placeholder="Product Name" class="form-control input-md" required="">
+        </div>
+      </div>
+​
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="lname">Price</label>  
+        <div class="col-md-5">
+          <input id="lname" name="price" type="number" placeholder="Price" class="form-control input-md" required="">
+        </div>
+      </div>
+​
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="state">Frquency</label>
+        <div class="col-md-4">
+          <select id="state" name="frequency" class="form-control">
+            <option value="90">Quarterly</option>
+            <option value="30">Monthly</option>
+            <option value="14">Bi-Monthly</option>
+            <option value="7">Weekly</option>
+          </select>
+        </div>
+      </div>
+​
+  <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="email">Descrption</label>  
+        <div class="col-md-5">
+          <textarea id="email" name="description" type="text" placeholder="Description" class="form-control input-md" required="" class="form-control" rows="6"></textarea>
+        </div>
+      </div>
+​
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="lname">Image URL</label>  
+        <div class="col-md-5">
+          <input id="lname" name="url" type="text" placeholder="Image url" class="form-control input-md" required="">
+        </div>
+      </div>
+​
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="submit"></label>
+        <div class="col-md-4">
+          <label class="checkbox-inline" for="submit">
+            <input class="btn btn-success" type="submit" name="submit" id="submit" value="Create New Account">
+          </label>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>

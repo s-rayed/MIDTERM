@@ -11,7 +11,6 @@ get '/' do
 end
 
 get '/account_page' do
-
   erb :'users/account_page'
 end
 
@@ -104,6 +103,9 @@ post '/products/:id/add' do
   end
 end
 
+get '/testimonials' do
+  erb :'/users/boots'
+end
 
 post '/reviews' do
   @review = Review.create(

@@ -55,8 +55,36 @@ var figure = $(".video").hover( hoverVideo, hideVideo );
 function hoverVideo(e) {  
   $('video', this).get(0).play(); 
 }
-
 function hideVideo(e) {
   $('video', this).get(0).pause(); 
 }
+});
+$(document).ready(function() {
+  $("#create_subscription").hide();
+
+$("#create_sub_button").on('click', function(){
+  // $("#create_subscription").addClass("blue");
+  // $("#user_info_table").addClass("red");
+    $("#user_info_table").hide();
+    $("#users_inventory").hide();
+    $("#create_subscription").show();
+      $("#user_subs").hide();
+
+});
+ // $("#create_sub_button").click(function(){
+ //   $("#user_info_table").fadeOut();
+ // });
+// $("#create_sub_button").click(function(){
+
+// });
+// $("#account_info").click(function(){
+//   $("#create_subscription").fadeOut();
+// });
+$("#account_info").click(function(){
+  $("#user_info_table").show();
+  $("#users_inventory").show();
+  $("#user_subs").show();
+  $("#create_subscription").hide();
+// });
+});
 });

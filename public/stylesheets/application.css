@@ -338,7 +338,6 @@ video::-webkit-media-controls {
    display:none !important;
 }
 .products_background{
-  background: url("https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQPLMOEODwZowAlH_-S3VCNimD92eXgPcOhR5NwCsi3hHRQ5BCT8w") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -416,4 +415,10 @@ body {
 .review-block-description{
   font-size:20px;
     margin-top: 10%;
+}
+
+#subs_title {
+  font-family: fantasy;
+  font-size:60px;
+  text-align: center;
 }
