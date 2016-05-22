@@ -121,7 +121,7 @@ sara_product = Product.create(
   price: 9,
   frequency: 30,
   description: "Beauty supplies",
-  user_id: 4,
+  user_id: 5,
   url: "https://1.bp.blogspot.com/-Ty2j8StYV_0/UVST-aXS3dI/AAAAAAAAACI/6watqylNrUg/s1600/box.jpg",
   video_url: "/videos/glossybox.mp4"
 )
@@ -131,7 +131,7 @@ marc_product = Product.create(
   price: 25,
   frequency: 30,
   description: "(√-1) (2^3) Σ (inverse cos(-1)) and it scratched me!",
-  user_id: 4,
+  user_id: 6,
   url: "https://www.adafruit.com/includes/templates/adafruit2013/images/raspberrypi.png",
   video_url: "/videos/goku.mp4"
 )
@@ -153,7 +153,7 @@ sandy_gardenpack_subscribed = Subscription.create(
 
 homer_catglasses_subscribed = Subscription.create(
   user_id: 4,
-  product_id: 4
+  product_id: 1
 )
 
 sara_tomacco_subscribed = Subscription.create(

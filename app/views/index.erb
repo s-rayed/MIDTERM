@@ -15,7 +15,7 @@
         <li><a href="/">Home</a></li>
            <li><a href="/products">Products</a></li>
            <% if current_user %>
-           <li><a href="/account_page">My Account</a></li>
+           <li><a id="my_ac_but" href="/account_page">My Account</a></li>
            <% end %>
          </ul>
          <div class="pull-right navbar-login">
@@ -69,7 +69,7 @@
            <div class="carousel-caption">
             <p>It’s tailored for you!!! Unike most of the other delivery brands out there, it’s a curated box full of sweet goods, it’s a surprise, but each time, you know it’s been selected according to your tastes</p>
             <p>P.S THIS DOG IS TOO AWESOME!!!</p>          
-             <p><a id="cr_sub_but" class="btn btn-lg btn-primary" href="/create_subscription" role="button">Create subscription</a></p>
+             <p><a id="cr_sub_but" class="btn btn-lg btn-primary" href="/account_page" role="button">Create subscription</a></p>
            </div>
          </div>
        </div>

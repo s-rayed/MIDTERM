@@ -11,6 +11,7 @@ get '/' do
 end
 
 get '/account_page' do
+  # binding.pry
   erb :'users/account_page'
 end
 
@@ -127,6 +128,34 @@ post '/review/:id/delete' do
  if @review.destroy
    redirect '/products'
  end
+end
+
+get '/users/update_subscription/:id' do
+ erb :'/users/update_subscription'
+end
+
+post '/users/update_subscription/:id/update' do
+ @update_prod = Product.update(
+   name: params[:name],
+   price: params[:price],
+   frequency: params[:frequency],
+   description: params[:description],
+   user_id: session[:id],
+   url: params[:url]
+   )
+ if @update_prod.save
+
+   erb :'/account_page'
+ else
+   erb :'/account_page'
+ end
+end
+
+post '/users/update_subscription/:id/delete' do
+@delete_prod = Product.find(params[:id]) 
+if @delete_prod.destroy
+  redirect '/products'
+end
 end
 
 get '/logout' do
