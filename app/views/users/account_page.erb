@@ -9,16 +9,19 @@
       </button>
       <a class="navbar-brand" href="#">Project name</a>
     </div>
+    
     <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/products">Products</a></li>
+      <ul class="nav navbar-nav navbar-left">
         <li><a href="/">Home</a></li>
+        <li><a href="/products">Products</a></li>
       </ul>
-      <% if current_user %>
-      <a href="/logout" class="btn btn-info btn-lg">
-       <span class="glyphicon glyphicon-log-out"></span> Log out
-     </a> 
-     <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <% if current_user %>
+        <a href="/logout" class="btn btn-info btn-lg">
+         <span class="glyphicon glyphicon-log-out"></span> Log out
+       </a> 
+       <% end %>
+      </ul>
    </div>
  </div>
 </nav>
@@ -35,6 +38,67 @@
     </div>
   </div>
 </div>
+
+<section id="users_inventory">
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <h2 class="sub-header">My Subsciption Products</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Subscription Name</th>
+            <th>Price</th>
+            <th>Frequency</th>
+            <th>Subscribers</th>
+            <th>Monthly Revenue</th>
+            <th>Delete Product?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% total_revenue = 0 %>
+          <% duration = 0 %>
+          <% next_purchase1 = 100 %>
+        
+          <% currentusers_products = Product.where(user_id: session[:id]) %>
+          <% total_subscribers = currentusers_products.count %>
+          <% currentusers_products.each do |product|%>
+​
+          <% duration = product.frequency %>
+          <% duration = (30/duration).to_i %>
+​
+          <% total_revenue += product.price * duration * total_subscribers %>
+​
+          <% if product.frequency < next_purchase1
+           next_purchase1 = product.frequency %>
+           <% end %>
+​
+​
+           <tr>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
+            <td><%= product.frequency %></td>
+            
+            <td><%= total_subscribers %></td>
+            <td></td>
+            <td><form method="post" action="/products/<%= product.id %>/delete"><button type="submit" class="btn btn-success" value="Delete">Delete</button></form></td>
+          </tr>
+​
+          <% end %>
+          <tr bgcolor="#ffff4c">
+            <td></td>
+            <!-- <td><strong>Next Shipment: <%= next_purchase1 %> Days</strong></td> -->
+            <td></td>
+            <td></td>
+            <td><strong>Total Subscribers: <%= total_subscribers %></strong></td>
+            <td><strong>$<%= total_revenue %> Monthly</strong></td>
+            <td>Baby dont go!</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+​
 ​
 <section id="user_subs">
   <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -82,7 +146,7 @@
           <tr bgcolor="#ffff4c">
             <td><strong>Total Subscriptions: <%= num_subs %> </strong></td>
             <td><strong>Next Arrival: <%= next_purchase %> Days</strong></td>
-            <td</td>
+            <td></td>
             <td><strong>$<%= total %> Monthly</strong></td>
             <td></td>
           </tr>
@@ -92,60 +156,7 @@
   </div>
 </section>
 ​
-<section id="users_inventory">
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h2 class="sub-header">My Subsciption Products</h2>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Subscription Name</th>
-            <th>Frequency</th>
-            <th>Price</th>
-            <th>Subscribers</th>
-            <th>Monthly Revenue</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% total_revenue = 0 %>
-          <% duration = 0 %>
-        
-          <% currentusers_products = Product.where(user_id: session[:id]) %>
-          <% total_subscribers = currentusers_products.count %>
-          <% currentusers_products.each do |product|%>
-​
-          <% duration = product.frequency %>
-          <% duration = (30/duration).to_i %>
-​
-          <% total_revenue += product.price * duration * total_subscribers %>
-​
-          <% if product.frequency < next_purchase
-           next_purchase = product.frequency %>
-           <% end %>
-​
-​
-           <tr>
-            <td><%= product.name %></td>
-            <td><%= product.frequency %></td>
-            <td><%= product.price %></td>
-            <td><%= total_subscribers %></td>
-          </tr>
-​
-          <% end %>
-          <tr bgcolor="#ffff4c">
-            <td></td>
-            <!-- <td><strong>Next Shipment: <%= next_purchase %> Days</strong></td> -->
-            <td></td>
-            <td></td>
-            <td><strong>Total Subscribers: <%= total_subscribers %></strong></td>
-            <td><strong>$<%= total_revenue %> Monthly</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-​
+
 <section id="user_info_table" class="table">
 ​
   <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">

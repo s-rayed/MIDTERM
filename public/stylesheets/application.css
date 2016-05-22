@@ -370,7 +370,7 @@ video::-webkit-media-controls {
 }
 
 body {
-  padding-top: 70px;
+  padding-top: 50px;
 }
 .btn-grey{
     background-color:#D8D8D8;
@@ -421,4 +421,12 @@ body {
   font-family: fantasy;
   font-size:60px;
   text-align: center;
+}
+
+#pname {
+  color: red;
+}
+
+#product_background {
+  background: url("http://orig06.deviantart.net/9190/f/2012/087/b/e/dark_gray_background_by_wiedzmawiedzma-d4u8sdx.jpg") no-repeat center center; 
 }

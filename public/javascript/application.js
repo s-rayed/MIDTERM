@@ -59,32 +59,25 @@ function hideVideo(e) {
   $('video', this).get(0).pause(); 
 }
 });
+
 $(document).ready(function() {
   $("#create_subscription").hide();
-
-$("#create_sub_button").on('click', function(){
-  // $("#create_subscription").addClass("blue");
-  // $("#user_info_table").addClass("red");
+  $("#create_sub_button").on('click', function(){
     $("#user_info_table").hide();
     $("#users_inventory").hide();
     $("#create_subscription").show();
       $("#user_subs").hide();
+    });
+  $("#account_info").click(function(){
+    $("#user_info_table").show();
+    $("#users_inventory").show();
+    $("#user_subs").show();
+      $("#create_subscription").hide();
+  });
+});
 
-});
- // $("#create_sub_button").click(function(){
- //   $("#user_info_table").fadeOut();
- // });
-// $("#create_sub_button").click(function(){
+// jQuery(function(){
+//    jQuery('#create_sub_button').click();
+// });
 
-// });
-// $("#account_info").click(function(){
-//   $("#create_subscription").fadeOut();
-// });
-$("#account_info").click(function(){
-  $("#user_info_table").show();
-  $("#users_inventory").show();
-  $("#user_subs").show();
-  $("#create_subscription").hide();
-// });
-});
-});
+// AUTO CLICK FUNCTION FOR CREATE SUBSCRIPTION BUTTON ON HOMEPAGE

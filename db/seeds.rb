@@ -9,7 +9,7 @@ user = User.create!(
   province: 'ON',
   paypal_email: 'josevasquez@gmail.com',
   password: 'test',
-  subscription_id: 2
+  subscription_id: 1
 )
 
 user2 = User.create!(
@@ -22,7 +22,7 @@ user2 = User.create!(
   province: 'ON',
   paypal_email: 'sandy@gmail.com',
   password: 'test',
-  subscription_id: 1
+  subscription_id: 2
 )
 
 user3 = User.create!(
@@ -35,10 +35,10 @@ user3 = User.create!(
   province: 'ON',
   paypal_email: 'sandy@gmail.com',
   password: 'test',
-  subscription_id: 1
+  subscription_id: 3
 )
 
-user3 = User.create!(
+user4 = User.create!(
   first_name: 'homer',
   last_name: 'simpson',
   email: 'homersimpson@gmail.com',
@@ -48,7 +48,20 @@ user3 = User.create!(
   province: 'ON',
   paypal_email: 'homersimpson@gmail.com',
   password: 'test',
-  subscription_id: 1
+  subscription_id: 4
+)
+
+user5 = User.create!(
+  first_name: 'sara',
+  last_name: 'silver',
+  email: 'sarasilver@gmail.com',
+  address: '321 nowhere st',
+  city: 'toronto',
+  postal_code: 'L3B1C6',
+  province: 'ON',
+  paypal_email: 'sarasilver@gmail.com',
+  password: 'test',
+  subscription_id: 5
 )
 
 jose_product = Product.create(
@@ -58,36 +71,74 @@ jose_product = Product.create(
   description: "Tulips, Dirt, Minerals",
   user_id: 1,
   url: "http://img-aws.ehowcdn.com/442x442p/photos.demandstudios.com/getty/article/74/138/86503007_XS.jpg",
-  video_url: "/videos/houston.mp4"
+  video_url: "/videos/garden.mp4"
 )
 sandy_product = Product.create(
   name: "Awkward Box",
   price: 10,
   frequency: 30,
-  description: "Tulips, Dirt, Minerals",
+  description: "Tampons and alot of awkward shit",
   user_id: 2,
   url: "http://mamamia-cdn.s3.amazonaws.com/wp-content/uploads/2013/01/tampons-pads-380x285.jpg",
   video_url: "/videos/fresh.mp4"
 )
-bb_product = Product.create(
-  name: "ToMmaco",
+
+michelle_product = Product.create(
+  name: "Sunglasses for Cats!",
+  price: 15,
+  frequency: 30,
+  description: "Sunglasses for your cat OR STUFFED ANIMALS!!!",
+  user_id: 3,
+  url: "https://media.giphy.com/media/nzcb2ZQ2L48Za/giphy.gif",
+  video_url: "/videos/cat.mp4"
+)
+
+homer_product = Product.create(
+  name: "ToMacco",
   price: 1,
   frequency: 7,
-  description: "Tomato seeds cross bred with Tobacco seeds! Theyre REFRESHINGLY ADDICTIVE..."
+  description: "Tomato seeds cross bred with Tobacco seeds! Theyre REFRESHINGLY ADDICTIVE...",
   user_id: 4,
-  url: "http://i.embed.ly/1/display/resize?key=1e6a1a1efdb011df84894040444cdc60&url=http%3A%2F%2Fscontent-a.cdninstagram.com%2Fhphotos-xap1%2Ft51.2885-15%2F10537950_260358724159076_548081493_n.jpg&width=810",
-  video_url: "/videos/google.mp4"
+  url: "https://sethsoasis.files.wordpress.com/2014/02/tomacco.jpg",
+  video_url: "/videos/tomacco.mp4"
 )
-subscription_jose1 = Subscription.create(
+
+sara_product = Product.create(
+  name: "Glossy Box",
+  price: 9,
+  frequency: 30,
+  description: "Beauty supplies",
+  user_id: 4,
+  url: "https://1.bp.blogspot.com/-Ty2j8StYV_0/UVST-aXS3dI/AAAAAAAAACI/6watqylNrUg/s1600/box.jpg",
+  video_url: "/videos/glossybox.mp4"
+)
+
+jose_tomacco_subscribed = Subscription.create(
   user_id: 1,
   product_id: 3
-
 )
-subscription_jose2 = Subscription.create(
+
+sandy_gardenpack_subscribed = Subscription.create(
   user_id: 2,
   product_id: 1
 )
-​subscription_sandy = Subscription.create(
+
+​michelle_awkward_subscribed = Subscription.create(
   user_id: 3,
   product_id: 2
+)
+
+homer_catglasses_subscribed = Subscription.create(
+  user_id: 4,
+  product_id: 4
+)
+
+sara_tomacco_subscribed = Subscription.create(
+  user_id: 5,
+  product_id: 4
+)
+
+michelle_glossy_subscribed = Subscription.create(
+  user_id: 3,
+  product_id: 5
 )

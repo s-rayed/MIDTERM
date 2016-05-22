@@ -53,7 +53,7 @@ post '/sign_up' do
 end
 
 get '/create_subscription' do
-  erb :'/products/create_subscription'
+  erb :'/users/account_page'
 end
 
 post '/create_subscription' do
@@ -103,8 +103,12 @@ post '/products/:id/add' do
   end
 end
 
-get '/testimonials' do
-  erb :'/users/boots'
+post '/products/:id/delete' do
+  @product = Product.find_by(params[:id])
+  if @product.destroy
+    # confirmation message for destruction
+    redirect '/account_page'
+  end
 end
 
 post '/reviews' do
