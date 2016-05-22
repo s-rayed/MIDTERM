@@ -64,6 +64,19 @@ user5 = User.create!(
   subscription_id: 5
 )
 
+user6 = User.create!(
+  first_name: 'marc',
+  last_name: 'kuo',
+  email: 'marckuo@gmail.com',
+  address: '949 somwhere st',
+  city: 'toronto',
+  postal_code: 'M5N4C9',
+  province: 'ON',
+  paypal_email: 'marckuo@gmail.com',
+  password: 'test',
+  subscription_id: 6
+)
+
 jose_product = Product.create(
   name: "Jose's Garden Pack",
   price: 8,
@@ -95,8 +108,8 @@ michelle_product = Product.create(
 
 homer_product = Product.create(
   name: "ToMacco",
-  price: 1,
-  frequency: 7,
+  price: 10,
+  frequency: 30,
   description: "Tomato seeds cross bred with Tobacco seeds! Theyre REFRESHINGLY ADDICTIVE...",
   user_id: 4,
   url: "https://sethsoasis.files.wordpress.com/2014/02/tomacco.jpg",
@@ -111,6 +124,16 @@ sara_product = Product.create(
   user_id: 4,
   url: "https://1.bp.blogspot.com/-Ty2j8StYV_0/UVST-aXS3dI/AAAAAAAAACI/6watqylNrUg/s1600/box.jpg",
   video_url: "/videos/glossybox.mp4"
+)
+
+marc_product = Product.create(
+  name: "Pie of the Month",
+  price: 25,
+  frequency: 30,
+  description: "(√-1) (2^3) Σ (inverse cos(-1)) and it scratched me!",
+  user_id: 4,
+  url: "https://www.adafruit.com/includes/templates/adafruit2013/images/raspberrypi.png",
+  video_url: "/videos/goku.mp4"
 )
 
 jose_tomacco_subscribed = Subscription.create(
