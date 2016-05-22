@@ -441,6 +441,7 @@ body {
 #product_background {
   background: url("http://orig06.deviantart.net/9190/f/2012/087/b/e/dark_gray_background_by_wiedzmawiedzma-d4u8sdx.jpg") no-repeat center center fixed; 
   padding-bottom: 60px;
+
   
 }
 
@@ -448,6 +449,7 @@ body {
   background: url("http://orig06.deviantart.net/9190/f/2012/087/b/e/dark_gray_background_by_wiedzmawiedzma-d4u8sdx.jpg") no-repeat center center; 
   color:#DCDCDC;
   overflow: hidden;
-
-
+}
+#margin_detail{
+  margin-left: 500px
 }
