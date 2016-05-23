@@ -68,13 +68,25 @@ user6 = User.create!(
   first_name: 'marc',
   last_name: 'kuo',
   email: 'marckuo@gmail.com',
-  address: '949 somwhere st',
+  address: '949 somewhere st',
   city: 'toronto',
   postal_code: 'M5N4C9',
   province: 'ON',
   paypal_email: 'marckuo@gmail.com',
   password: 'test',
   subscription_id: 6
+)
+
+user7 = User.create!(
+  first_name: 'marie',
+  last_name: 'daley',
+  email: 'marie@gmail.com',
+  address: '123 prince st',
+  city: 'toronto',
+  postal_code: 'M2K1L7',
+  province: 'ON',
+  paypal_email: 'marie@gmail.com',
+  password: 'test' 
 )
 
 jose_product = Product.create(
@@ -194,4 +206,22 @@ michelle_glossy_subscribed = Subscription.create(
 michelle_pi_subscribed = Subscription.create(
   user_id: 3,
   product_id: 6
+)
+
+review_pi_sandy = Review.create(
+  review: "Raspberry is the only flavor you got? What a rip!",
+  user_id: 2,
+  product_id: 6
+)
+
+review_awkward_marc = Review.create(
+  review: "Thank you Awkward Box! Never will I ever feel awkward again!",
+  user_id: 6,
+  product_id: 2
+)
+
+review_sunglass_marie = Review.create(
+  review: "My cat is funkaaay now!",
+  user_id: 7,
+  product_id: 3
 )
