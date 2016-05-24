@@ -11,7 +11,6 @@ class AddUsers < ActiveRecord::Migration
       t.string :province
       t.string :paypal_email
       t.string :password
-      t.references :subscription, foreign_key: true
     end
   end
 
