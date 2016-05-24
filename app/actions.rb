@@ -1,4 +1,3 @@
-require 'pry'
 # Homepage (Root path)
 helpers do
   def current_user
@@ -11,7 +10,6 @@ get '/' do
 end
 
 get '/account_page' do
-  # binding.pry
   erb :'users/account_page'
 end
 

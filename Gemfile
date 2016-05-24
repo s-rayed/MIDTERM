@@ -12,7 +12,6 @@ gem 'puma'
 gem 'tux'
 
 group :development, :test do
-  gem 'pry'
   gem 'shotgun'
   gem 'sqlite3'
 end
@@ -20,3 +19,5 @@ end
 group :production do
   gem 'pg'
 end
+
+ruby '2.1.3'
