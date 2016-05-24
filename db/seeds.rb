@@ -8,8 +8,7 @@ user = User.create!(
   postal_code: 'M3F1B6',
   province: 'ON',
   paypal_email: 'josevasquez@gmail.com',
-  password: 'test',
-  subscription_id: 1
+  password: 'test'
 )
 
 user2 = User.create!(
@@ -21,8 +20,7 @@ user2 = User.create!(
   postal_code: 'M3F1B6',
   province: 'ON',
   paypal_email: 'sandy@gmail.com',
-  password: 'test',
-  subscription_id: 2
+  password: 'test'
 )
 
 user3 = User.create!(
@@ -34,8 +32,7 @@ user3 = User.create!(
   postal_code: 'M3F1B6',
   province: 'ON',
   paypal_email: 'sandy@gmail.com',
-  password: 'test',
-  subscription_id: 3
+  password: 'test'
 )
 
 user4 = User.create!(
@@ -47,8 +44,7 @@ user4 = User.create!(
   postal_code: 'M3N1A6',
   province: 'ON',
   paypal_email: 'homersimpson@gmail.com',
-  password: 'test',
-  subscription_id: 4
+  password: 'test'
 )
 
 user5 = User.create!(
@@ -60,8 +56,7 @@ user5 = User.create!(
   postal_code: 'L3B1C6',
   province: 'ON',
   paypal_email: 'sarasilver@gmail.com',
-  password: 'test',
-  subscription_id: 5
+  password: 'test'
 )
 
 user6 = User.create!(
@@ -73,8 +68,7 @@ user6 = User.create!(
   postal_code: 'M5N4C9',
   province: 'ON',
   paypal_email: 'marckuo@gmail.com',
-  password: 'test',
-  subscription_id: 6
+  password: 'test'
 )
 
 user7 = User.create!(

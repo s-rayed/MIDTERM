@@ -1,7 +1,7 @@
 class AddUserIdToProducts < ActiveRecord::Migration
   def change
     change_table :products do |t|
-      t.references :user, foreign_key: true
+      t.references :user
     end
   end
 end

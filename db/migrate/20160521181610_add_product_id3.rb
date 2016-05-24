@@ -5,7 +5,7 @@ class AddProductId3 < ActiveRecord::Migration
     end
 
     change_table(:reviews) do |t|
-      t.references :product
+
     end
   end
 end
