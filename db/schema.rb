@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160521181610) do
+ActiveRecord::Schema.define(version: 20160524014849) do
 
   create_table "products", force: :cascade do |t|
     t.string  "name"
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(version: 20160521181610) do
     t.string   "province"
     t.string   "paypal_email"
     t.string   "password"
-    t.integer  "subscription_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
