@@ -6,6 +6,7 @@ class AddProducts < ActiveRecord::Migration
       t.integer :price
       t.integer :frequency
       t.string :description
+      t.string :content, array: true
       t.string :url
     end
   end
